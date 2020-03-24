@@ -24,7 +24,7 @@
 		</div>
 		<div class="login-content">
 			<form name="login" action="{{ route('admin.login.do') }}" method="post" autocomplete="off">
-				<img src="{{ asset('assets/img/avatar.svg') }}">
+				<img src="{{ asset('assets/img/avatar.jpg') }}">
 				<h2 class="title">Login</h2>
 				<div class="input-div one">
 					<div class="i">
@@ -32,7 +32,7 @@
 					</div>
 					<div class="div">
 						<h5>E-mail</h5>
-						<input type="email" name="email" class="input">
+						<input type="email" name="email" class="input" value="teste@gmail.com">
 					</div>
 				</div>
 				<div class="input-div pass">
