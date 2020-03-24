@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 
 class AuthController extends Controller
 {
@@ -24,12 +25,13 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         if (in_array('', $request->only('email', 'password'))) {
-            $json['message'] = $this->message->error('Ooops, informe todos os dados para efetuar o login')->render();
+            // $json['message'] = 'Ooops, informe todos os dados para efetuar o login';
+            $json['message'] = $this->message->success('Ooops, informe todos os dados para efetuar o login')->render();
             return response()->json($json);
         }
         
         if (!filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
-            $json['message'] = $this->message->error('Ooops, informe um e-mail válido!')->render();
+            $json['message'] = $this->message->success('Ooops, informe um e-mail válido!')->render();
             return response()->json($json);
         }
 
@@ -39,7 +41,7 @@ class AuthController extends Controller
         ];
 
         if (!Auth::attempt($credentials)) {
-            $json['message'] = $this->message->error('Ooops, usário e senha não conferem')->render();
+            $json['message'] = $this->message->success('Ooops, usário e senha não conferem')->render();
             return response()->json($json);
         }
 

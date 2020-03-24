@@ -2,8 +2,8 @@
 <html lang="pt-br">
 
 <head>
+	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/ajax.css') }}">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 	
 	<link rel="icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}" />

@@ -18,7 +18,8 @@ $(function () {
 
 
         $.post(action, { email: email, password: password }, function (response) {
-            // console.log(response);
+            console.log(response);
+
             if (response.message) {
                 ajaxMessage(response.message, 3);
             }
