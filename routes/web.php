@@ -13,6 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('admin.index');
+Route::namespace('Admin')->prefix('admin')->as('admin.')->group(function (){
+
+     /** Formulario de Login */
+    Route::get('/', 'AuthController@loginForm')->name('login');
+    Route::post('login', 'AuthController@login')->name('login.do');
+
+    /** Rotas Protegidas */
+    Route::middleware('auth')->group(function (){
+        /** Dashboard Home */
+        Route::get('home', 'AuthController@home')->name('home');
+    });
+
+    /** Logout */
+    Route::get('logout', 'AuthController@logout')->name('logout');
 });
