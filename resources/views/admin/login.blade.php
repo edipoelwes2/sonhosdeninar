@@ -3,10 +3,10 @@
 
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/login.css') }}">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 	
-	<link rel="icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}" />
+	<link rel="icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}" />
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -17,14 +17,14 @@
 
 <body>
 	<div class="ajax_response"></div>
-	<img class="wave" src="{{ asset('assets/img/sonhos.png') }}">
+	<img class="wave" src="{{ asset('assets/images/sonhos.png') }}">
 	<div class="container">
 		<div class="img">
-			<img src="{{ asset('assets/img/login.png') }}">
+			<img src="{{ asset('assets/images/login.png') }}">
 		</div>
 		<div class="login-content">
 			<form name="login" action="{{ route('admin.login.do') }}" method="post" autocomplete="off">
-				<img src="{{ asset('assets/img/avatar.jpg') }}">
+				<img src="{{ asset('assets/images/avatar.jpg') }}">
 				<h2 class="title">Login</h2>
 				<div class="input-div one">
 					<div class="i">
