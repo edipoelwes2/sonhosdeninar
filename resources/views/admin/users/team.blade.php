@@ -23,7 +23,7 @@
         <section class="app_users_home">
             @foreach ($users as $user)
             <article class="user radius">
-                <div class="cover" style="background-size: cover; background-image: url('assets/images/avatar.jpg');">
+                <div class="cover" style="background-size: cover; background-image: url({{ $user->url_cover }});">
                 </div>
                 <h4>{{ $user->name }}</h4>
                 

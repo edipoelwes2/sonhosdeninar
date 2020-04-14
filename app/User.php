@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use League\CommonMark\Block\Element\Document;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -64,6 +64,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getUrlCoverAttribute()
+    {
+        if(!empty($this->cover)){
+            return Storage::url($this->cover);
+        }
+
+        return '';
+    }
 
     public function setDocumentAttribute($value)
     {

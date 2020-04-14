@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Requests\Admin\User as UserRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -50,6 +51,11 @@ class UserController extends Controller
     {
         $userCreate = User::create($request->all());
 
+        if(!empty($request->file('cover'))){
+            $userCreate->cover = $request->file('cover')->store('user');
+            $userCreate->save();
+        }
+
         return redirect()->route('admin.users.edit', [
         'user' => $userCreate->id,
         ])->with(['color' => 'green', 'message' => 'Cliente cadastrado com sucesso!']);
@@ -90,7 +96,17 @@ class UserController extends Controller
     public function update(UserRequest $request, $id)
     {
         $user = User::where('id', $id)->first();
+        
+        if(!empty($request->file('cover'))){
+            Storage::delete($user->cover);
+            $user->cover = '';
+        }
+
         $user->fill($request->all());
+
+        if(!empty($request->file('cover'))){
+            $user->cover = $request->file('cover')->store('user');
+        }
 
         if(!$user->save()){
             return redirect()->back()->withInput()->withErros();
