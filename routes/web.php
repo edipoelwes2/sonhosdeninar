@@ -23,8 +23,8 @@ Route::namespace('Admin')->prefix('admin')->as('admin.')->group(function (){
     Route::middleware('auth')->group(function (){
         /** Dashboard Home */
         Route::get('home', 'AuthController@home')->name('home');
-        Route::get('users/team', 'UserController@team')->name('users.team');
         
+        Route::get('users/team', 'UserController@team')->name('users.team');
         Route::resources([
             'users' => 'UserController',
         ]);

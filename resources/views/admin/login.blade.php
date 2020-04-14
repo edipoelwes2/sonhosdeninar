@@ -32,7 +32,7 @@
 					</div>
 					<div class="div">
 						<h5>E-mail</h5>
-						<input type="email" name="email" class="input" value="teste@gmail.com">
+						<input type="email" name="email" class="input" value="edipoelwes2@gmail.com">
 					</div>
 				</div>
 				<div class="input-div pass">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\User;
+use App\Http\Requests\Admin\User as UserRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -23,7 +24,10 @@ class UserController extends Controller
 
     public function team()
     {
-        return view('admin.users.team');
+        $users = User::where('admin', 1)->get();
+        return view('admin.users.team', [
+            'users' => $users,
+        ]);
     }
 
     /**
@@ -42,11 +46,13 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
         $userCreate = User::create($request->all());
 
-        var_dump($userCreate);
+        return redirect()->route('admin.users.edit', [
+        'user' => $userCreate->id,
+        ])->with(['color' => 'green', 'message' => 'Cliente cadastrado com sucesso!']);
     }
 
     /**
@@ -69,7 +75,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::where('id', $id)->first();
-        return view('admin.users.edit'. [
+        return view('admin.users.edit', [
             'user' => $user
         ]);
     }
@@ -81,9 +87,18 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
-        //
+        $user = User::where('id', $id)->first();
+        $user->fill($request->all());
+
+        if(!$user->save()){
+            return redirect()->back()->withInput()->withErros();
+        }
+
+        return redirect()->route('admin.users.edit', [
+            'user' => $user->id,
+        ])->with(['color' => 'green', 'message' => 'Cliente atualizado com sucesso!']);
     }
 
     /**

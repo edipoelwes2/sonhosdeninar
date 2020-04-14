@@ -857,6 +857,11 @@ input:-webkit-autofill {
   display: block;
 }
 
+.message-color p {
+  color: #F4645F;
+  margin-top: 5px;
+}
+
 .message-green {
   color: #ffffff;
   background-color: #36BA9B;
