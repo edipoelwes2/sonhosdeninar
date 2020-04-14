@@ -9,32 +9,37 @@
         <div class="dash_content_app_header_actions">
             <nav class="dash_content_app_breadcrumb">
                 <ul>
-                    <li><a href="">Dashboard</a></li>
+                    <li><a href="{{ route('admin.home') }}">Dashboard</a></li>
                     <li class="separator icon-angle-right icon-notext"></li>
-                    <li><a href="" class="text-orange">Time</a></li>
+                    <li><a href="#" class="text-orange">Time</a></li>
                 </ul>
             </nav>
 
-            <a href="" class="btn btn-orange icon-user-plus ml-1">Criar Usuário</a>
+            <a href="{{ route('admin.users.create') }}" class="btn btn-orange icon-user-plus ml-1">Criar Usuário</a>
         </div>
     </header>
 
     <div class="dash_content_app_box">
         <section class="app_users_home">
+            @foreach ($users as $user)
             <article class="user radius">
                 <div class="cover" style="background-size: cover; background-image: url('assets/images/avatar.jpg');">
                 </div>
-                <h4>Gustavo Web</h4>
-
+                <h4>{{ $user->name }}</h4>
+                
                 <div class="info">
-                    <p>gustavo@upinside.com.br</p>
-                    <p>Desde <?= date('d/m/Y'); ?></p>
+                    <p>{{ $user->email }}</p>
+                    <p>Desde {{ date('d/m/Y', strtotime($user->created_at)) }}</p>
+                    @if($user->last_login_at)
+                        <p>Ultimo login {{ date('d/m/Y', strtotime($user->last_login_at))  }}</p>
+                    @endif
                 </div>
 
                 <div class="actions">
-                    <a class="icon-cog btn btn-orange" href="" title="">Gerenciar</a>
+                    <a class="icon-cog btn btn-orange" href="{{ route('admin.users.edit', ['user'=>$user->id]) }}">Gerenciar</a>
                 </div>
             </article>
+            @endforeach
         </section>
     </div>
 </section>

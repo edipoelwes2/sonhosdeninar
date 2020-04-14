@@ -4,7 +4,7 @@
 <section class="dash_content_app">
 
     <header class="dash_content_app_header">
-        <h2 class="icon-user-plus">Novo Cliente</h2>
+        <h2 class="icon-user-plus">Editar Cliente</h2>
 
         <div class="dash_content_app_header_actions">
             <nav class="dash_content_app_breadcrumb">
@@ -21,6 +21,14 @@
 
     <div class="dash_content_app_box">
         <div class="nav">
+
+            @if($errors->all())
+                @foreach($errors->all() as $error)
+                    @message(['color' => 'orange'])
+                        <p class="icon-asterisk">{{ $error }}</p>
+                    @endmessage
+                @endforeach
+            @endif
 
             @if(session()->exists('message'))
                 @message(['color' => session()->get('color')])
@@ -302,12 +310,6 @@
                                         <span class="legend">*E-mail:</span>
                                         <input type="email" name="email" placeholder="Melhor e-mail"
                                             value="{{ old('email') ?? $user->email }}" />
-
-                                        @error('email')
-                                        <span class="message-color" role="alert">
-                                            <p class="icon-asterisk">{{ $message }}</p>
-                                        </span>
-                                        @enderror
                                     </label>
 
                                     <label class="label">
