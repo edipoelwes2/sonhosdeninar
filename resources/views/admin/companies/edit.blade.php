@@ -4,7 +4,7 @@
 <section class="dash_content_app">
 
     <header class="dash_content_app_header">
-        <h2 class="icon-user-plus">Nova Empresa</h2>
+        <h2 class="icon-user-plus">Editar Empresa</h2>
 
         <div class="dash_content_app_header_actions">
             <nav class="dash_content_app_breadcrumb">
@@ -36,12 +36,7 @@
                     <select name="user" class="select2">
                         <option value="" selected>Selecione um responsável legal</option>
                         @foreach ($users as $user)
-                            @if (!empty($selected))
-                                <option value="{{ $user->id }}" {{ ($user->id === $selected->id ? 'selected' : '' ) }}>{{ $user->name }} ({{ $user->document }})</option>
-                            @else
-                                <option value="{{ $user->id }}">{{ $user->name }} ({{ $user->document }})</option>
-                            @endif
-                            
+                            <option value="{{ $user->id }}" {{ ($user->id === $company->user ? 'selected' : '') }}>{{ $user->name }} ({{ $user->document }})</option>
                         @endforeach
                     </select>
                     <p style="margin-top: 4px;">
@@ -51,7 +46,7 @@
 
                 <label class="label">
                     <span class="legend">*Razão Social:</span>
-                    <input type="text" name="social_name" placeholder="Razão Social" value="{{ old('social_name') }}" />
+                    <input type="text" name="social_name" placeholder="Razão Social" value="{{ old('social_name') ?? $company->social_name }}" />
                     
                     @error('social_name')
                     <span class="message-color" role="alert">
@@ -62,7 +57,7 @@
 
                 <label class="label">
                     <span class="legend">Nome Fantasia:</span>
-                    <input type="text" name="alias_name" placeholder="Nome Fantasia" value="{{ old('alias_name') }}" />
+                    <input type="text" name="alias_name" placeholder="Nome Fantasia" value="{{ old('alias_name') ?? $company->alias_name }}" />
 
                     @error('alias_name')
                     <span class="message-color" role="alert">
@@ -75,7 +70,7 @@
                     <label class="label">
                         <span class="legend">CNPJ:</span>
                         <input type="tel" name="document_company" class="mask-cnpj" placeholder="CNPJ da Empresa"
-                            value="{{ old('document_company') }}" />
+                            value="{{ old('document_company') ?? $company->document_company }}" />
 
                         @error('document_company')
                         <span class="message-color" role="alert">
@@ -87,7 +82,7 @@
                     <label class="label">
                         <span class="legend">Inscrição Estadual:</span>
                         <input type="text" name="document_company_secondary" placeholder="Número da Inscrição"
-                            value="{{ old('document_company_secondary') }}" />
+                            value="{{ old('document_company_secondary') ?? $company->document_company_secondary }}" />
 
                         @error('document_company_secondary')
                         <span class="message-color" role="alert">
@@ -108,7 +103,7 @@
                             <label class="label">
                                 <span class="legend">*CEP:</span>
                                 <input type="tel" name="zipcode" class="mask-zipcode zip_code_search"
-                                    placeholder="Digite o CEP" value="{{ old('zipcode') }}" />
+                                    placeholder="Digite o CEP" value="{{ old('zipcode') ?? $company->zipcode }}" />
 
                                 @error('zipcode')
                                 <span class="message-color" role="alert">
@@ -120,7 +115,7 @@
 
                         <label class="label">
                             <span class="legend">*Endereço:</span>
-                            <input type="text" name="street" class="street" placeholder="Endereço Completo" value="{{ old('street') }}" />
+                            <input type="text" name="street" class="street" placeholder="Endereço Completo" value="{{ old('street') ?? $company->street }}" />
                         
                             @error('street')
                             <span class="message-color" role="alert">
@@ -132,7 +127,7 @@
                         <div class="label_g2">
                             <label class="label">
                                 <span class="legend">*Número:</span>
-                                <input type="text" name="number" placeholder="Número do Endereço" value="{{ old('number') }}" />
+                                <input type="text" name="number" placeholder="Número do Endereço" value="{{ old('number') ?? $company->number }}" />
                             
                                 @error('number')
                                 <span class="message-color" role="alert">
@@ -143,7 +138,7 @@
 
                             <label class="label">
                                 <span class="legend">Complemento:</span>
-                                <input type="text" name="complement" placeholder="Completo (Opcional)" value="{{ old('complement') }}" />
+                                <input type="text" name="complement" placeholder="Completo (Opcional)" value="{{ old('complement') ?? $company->complement }}" />
                             
                                 @error('complement')
                                 <span class="message-color" role="alert">
@@ -155,7 +150,7 @@
 
                         <label class="label">
                             <span class="legend">*Bairro:</span>
-                            <input type="text" name="neighborhood" class="neighborhood" placeholder="Bairro" value="{{ old('neighborhood') }}" />
+                            <input type="text" name="neighborhood" class="neighborhood" placeholder="Bairro" value="{{ old('neighborhood') ?? $company->neighborhood }}" />
                         
                             @error('neighborhood')
                             <span class="message-color" role="alert">
@@ -167,7 +162,7 @@
                         <div class="label_g2">
                             <label class="label">
                                 <span class="legend">*Estado:</span>
-                                <input type="text" name="state" class="state" placeholder="Estado" value="{{ old('state') }}" />
+                                <input type="text" name="state" class="state" placeholder="Estado" value="{{ old('state') ?? $company->state }}" />
                             
                                 @error('state')
                                 <span class="message-color" role="alert">
@@ -178,7 +173,7 @@
 
                             <label class="label">
                                 <span class="legend">*Cidade:</span>
-                                <input type="text" name="city" class="city" placeholder="Cidade" value="{{ old('city') }}" />
+                                <input type="text" name="city" class="city" placeholder="Cidade" value="{{ old('city') ?? $company->city }}" />
                             
                                 @error('city')
                                 <span class="message-color" role="alert">

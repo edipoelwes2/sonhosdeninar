@@ -53,7 +53,7 @@
                         <td><a href="" class="text-orange">Robson V. Leite</a></td>
                         <td><a href="" class="text-orange">Gustavo Web</a></td>
                         <td>Locação</td>
-                        <td><?= date('d/m/Y'); ?></td>
+                        <td>{{ date('d/m/Y') }}</td>
                         <td>12 meses</td>
                     </tr>
                     </tbody>

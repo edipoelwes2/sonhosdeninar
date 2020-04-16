@@ -27,6 +27,8 @@ Route::namespace('Admin')->prefix('admin')->as('admin.')->group(function (){
         Route::get('users/team', 'UserController@team')->name('users.team');
         Route::resources([
             'users' => 'UserController',
+            /** Empresa */
+            'companies' => 'CompanyController',
         ]);
     });
 
