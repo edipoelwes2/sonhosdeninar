@@ -29,6 +29,8 @@ Route::namespace('Admin')->prefix('admin')->as('admin.')->group(function (){
             'users' => 'UserController',
             /** Empresa */
             'companies' => 'CompanyController',
+            /** Categorias */
+            'categories' => 'CategoryController',
         ]);
     });
 

@@ -46,16 +46,33 @@
                 <li class="dash_sidebar_nav_item {{ isActive('admin.home') }}">
                     <a class="icon-tachometer" href="{{ route('admin.home') }}">Dashboard</a>
                 </li>
-                <li class="dash_sidebar_nav_item {{ isActive('admin.users') }} {{ isActive('admin.companies') }}"><a class="icon-users"
-                        href="{{ route('admin.users.index') }}">Clientes</a>
+                <li class="dash_sidebar_nav_item {{ isActive('admin.users') }} {{ isActive('admin.companies') }}"><a
+                        class="icon-users" href="{{ route('admin.users.index') }}">Usuarios</a>
                     <ul class="dash_sidebar_nav_submenu">
                         <li class="{{ isActive('admin.users.index') }}"><a href="{{ route('admin.users.index') }}">
                                 Ver Todos</a></li>
-                        <li class="{{ isActive('admin.companies.index') }}"><a href="{{ route('admin.companies.index') }}">Empresas</a></li>
+                        <li class="{{ isActive('admin.companies.index') }}"><a
+                                href="{{ route('admin.companies.index') }}">Empresas</a></li>
                         <li class="{{ isActive('admin.users.team') }}"><a
                                 href="{{ route('admin.users.team') }}">Time</a></li>
                         <li class="{{ isActive('admin.users.create') }}"><a
                                 href="{{ route('admin.users.create') }}">Criar Novo</a></li>
+                    </ul>
+                </li>
+
+                <li class="dash_sidebar_nav_item {{ isActive('admin.categories') }}"><a class="icon-home"
+                        href="{{ route('admin.categories.index') }}">Categorias</a>
+                    <ul class="dash_sidebar_nav_submenu">
+                        <li class="{{ isActive('admin.categories.index') }}"><a href="{{ route('admin.categories.index') }}">Ver Todos</a></li>
+                        <li class="{{ isActive('admin.categories.create') }}"><a href="{{ route('admin.categories.create') }}">Criar Novo</a></li>
+                    </ul>
+                </li>
+
+                <li class="dash_sidebar_nav_item"><a class="icon-home"
+                        href="dashboard.php?app=properties/index">Produtos</a>
+                    <ul class="dash_sidebar_nav_submenu">
+                        <li class=""><a href="dashboard.php?app=properties/index">Ver Todos</a></li>
+                        <li class=""><a href="dashboard.php?app=properties/create">Criar Novo</a></li>
                     </ul>
                 </li>
                 <li class="dash_sidebar_nav_item"><a class="icon-home"
@@ -86,7 +103,8 @@
                     <div class="dash_userbar_box_content">
                         <span class="icon-align-justify icon-notext mobile_menu transition btn btn-green"></span>
                         <h1 class="transition">
-                            <i class="icon-imob text-orange"></i><a href="{{ route('admin.home') }}">Sonhosde<b>Ninar</b></a>
+                            <i class="icon-imob text-orange"></i><a
+                                href="{{ route('admin.home') }}">Sonhosde<b>Ninar</b></a>
                         </h1>
                         <div class="dash_userbar_box_bar no_mobile">
                             <a class="text-red icon-sign-out" href="{{ route('admin.logout') }}">Sair</a>
