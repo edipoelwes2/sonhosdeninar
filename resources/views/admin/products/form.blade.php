@@ -44,7 +44,7 @@
          @if(! isset($product))
             <form action="{{ route('admin.products.store') }}" method="post" class="app_form" enctype="multipart/form-data">
          @else
-            <form action="{{ route('admin.products.update', $product->id) }}" method="post" class="app_form" enctype="multipart/form-data">
+            <form action="{{ route('admin.products.update', ['product' => $product->id]) }}" method="post" class="app_form" enctype="multipart/form-data">
                @method('PUT')
          @endif
             @csrf

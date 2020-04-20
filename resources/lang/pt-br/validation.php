@@ -182,6 +182,7 @@ return [
         'title' => 'título',
         'username' => 'usuário',
         'year' => 'ano',
+        'price' => 'preço',
 
         // Person
         'document' => 'CPF',

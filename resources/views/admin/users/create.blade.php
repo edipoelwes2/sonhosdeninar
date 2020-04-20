@@ -4,7 +4,9 @@
 <section class="dash_content_app">
 
     <header class="dash_content_app_header">
-        <h2 class="icon-user-plus">Novo Cliente</h2>
+        <h2 class="icon-user-plus">
+         Cadastrar Novo Usuario
+        </h2>
 
         <div class="dash_content_app_header_actions">
             <nav class="dash_content_app_breadcrumb">
@@ -22,13 +24,6 @@
     <div class="dash_content_app_box">
         <div class="nav">
 
-            {{-- @if($errors->all())
-                @foreach($errors->all() as $error)
-                    @message(['color' => 'orange'])
-                        <p class="icon-asterisk">{{ $error }}</p>
-                    @endmessage
-                @endforeach
-            @endif --}}
 
             <ul class="nav_tabs">
                 <li class="nav_tabs_item">
@@ -37,14 +32,11 @@
                 <li class="nav_tabs_item">
                     <a href="#complementary" class="nav_tabs_item_link">Dados Empresa</a>
                 </li>
-                {{-- <li class="nav_tabs_item">
-                    <a href="#realties" class="nav_tabs_item_link">Imóveis</a>
-                </li> --}}
                 <li class="nav_tabs_item">
                     <a href="#management" class="nav_tabs_item_link">Administrativo</a>
                 </li>
             </ul>
-
+ 
             <form class="app_form" action="{{ route('admin.users.store') }}" method="post"
                 enctype="multipart/form-data">
                 @csrf

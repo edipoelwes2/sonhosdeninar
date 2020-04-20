@@ -94,15 +94,12 @@ class ProductController extends Controller
     public function update(ProductRequest $request, $id)
     {
         $product = Product::where('id', $id)->first();
-        $product->fill($request->all());
-
-        if(!$product->save()){
-            return redirect()->back()->withInput()->withErros();
-        }
+        // $product->fill($request->all());
+        $product->update($request->all());
 
         return redirect()->route('admin.products.edit', [
             'product' => $product->id,
-        ])->with(['color' => 'green', 'message' => 'Produto atualizado com sucesso!']); 
+        ])->with(['color' => 'green', 'message' => 'Produto atualizado com sucesso!']);
     }
 
     /**
