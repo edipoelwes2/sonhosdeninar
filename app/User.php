@@ -26,8 +26,8 @@ class User extends Authenticatable
         'document',
         'document_secondary',
         'document_secondary_complement',
-        'date_of_bird',
-        'place_of_bird',
+        // 'date_of_bird',
+        // 'place_of_bird',
         'civil_status',
         'cover',
 

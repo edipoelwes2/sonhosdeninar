@@ -18,7 +18,7 @@
                 </ul>
             </nav>
 
-            <a href="{{ route('admin.products.create') }}" class="btn btn-orange icon-user ml-1">Criar Produto</a>
+            <a href="{{ route('admin.stocks.create') }}" class="btn btn-orange icon-user ml-1">Nova Entrada</a>
             <button class="btn btn-green icon-search icon-notext ml-1 search_open"></button>
         </div>
     </header>
@@ -32,31 +32,24 @@
                     <tr>
                         <th>#</th>
                         <th>Produto</th>
-                        <th>Tamanho</th>
                         <th>Quantidade</th>
-                        <th>Media de Custo</th>
-                        <th>Preço</th>
+                        <th>Preço de Custo</th>
+                        <th>Data</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($products as $product)
+                    @foreach ($stocks as $stock)
                     <tr>
-                        <td>{{ $product->id }}</td>
-                        <td><a href="{{ route('admin.products.edit', ['product' => $product->id]) }}"
-                                class="text-orange">
-                                {{ $product->category->name }}-{{ $product->brand->name }}-{{ $product->description  }}</a>
-                        </td>
-                        <td>{{ $product->size }}</td>
-
+                        <td>{{ $stock->id }}</td>
                         @php
-                        $quantity = $product->stocks->sum('quantity');
+                            $product = "Fralda - " . $stock->product->brand->name . "-" .$stock->product->description . "-" . $stock->product->size;
                         @endphp
-
-                        <td class="badge badge-pill 
-                        {{ ($quantity > 4 ? 'badge-success' : ($quantity == 0 ? 'badge-danger' : 'badge-warning')) }}">
-                            {{ $quantity }}</td>
-                        <td>R$ {{ money_br($product->stocks->avg('price')) }}</td>
-                        <td>R$ {{ $product->price }}</td>
+                        <td><a href="{{ route('admin.stocks.edit', ['stock' => $stock->id]) }}" class="text-orange">
+                            {{ $product }}</a></td>
+                       
+                        <td class="badge badge-pill badge-primary">{{ $stock->quantity }}</td>
+                        <td>R$ {{ $stock->price }}</td>
+                        <td>{{ date_br($stock->created_at) }}</td>
                     </tr>
                     @endforeach
                 </tbody>

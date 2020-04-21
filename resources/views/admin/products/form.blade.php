@@ -4,7 +4,6 @@
 <section class="dash_content_app">
 
    <header class="dash_content_app_header">
-      {{-- <h2 class="icon-search">Cadastrar Novo Produto</h2> --}}
       <h2 class="icon-search">
          {{ isset($product->id) ? 'Editar Produto' : 'Cadastrar Novo Produto' }}
       </h2>

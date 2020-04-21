@@ -33,6 +33,8 @@ Route::namespace('Admin')->prefix('admin')->as('admin.')->group(function (){
             'categories' => 'CategoryController',
             /** Produtos */
             'products' => 'ProductController',
+            /** Estoque */
+            'stocks' => 'StockController',
         ]);
     });
 

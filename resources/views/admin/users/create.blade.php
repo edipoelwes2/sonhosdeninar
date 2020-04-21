@@ -110,7 +110,7 @@
                         <div class="label_g2">
                             <label class="label">
                                 <span class="legend">*Data de Nascimento:</span>
-                                <input type="tel" name="date_of_birth" class="mask-date"
+                                <input type="text" name="date_of_birth" class="mask-date"
                                     placeholder="Data de Nascimento" value="{{ old('date_of_birth') }}" />
 
                                 @error('date_of_birth')

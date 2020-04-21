@@ -78,6 +78,16 @@
                </ul>
             </li>
 
+            <li class="dash_sidebar_nav_item {{ isActive('admin.stocks') }}"><a class="icon-home"
+               href="{{ route('admin.stocks.index') }}">Entrada</a>
+            <ul class="dash_sidebar_nav_submenu">
+               <li class="{{ isActive('admin.stocks.index') }}"><a href="{{ route('admin.stocks.index') }}">Ver
+                     Todos</a></li>
+               <li class="{{ isActive('admin.stocks.create') }}"><a
+                     href="{{ route('admin.stocks.create') }}">Criar Novo</a></li>
+            </ul>
+         </li>
+
             <li class="dash_sidebar_nav_item"><a class="icon-file-text"
                   href="dashboard.php?app=contracts/index">Contratos</a>
                <ul class="dash_sidebar_nav_submenu">

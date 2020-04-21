@@ -13,6 +13,11 @@ class Product extends Model
         'category_id', 'brand_id', 'description', 'size', 'price'
     ];
 
+    public function stocks()
+    {
+        return $this->hasMany(Stock::class);
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -22,16 +27,6 @@ class Product extends Model
     {
         return $this->belongsTo(Brand::class);
     }
-
-    // public function setCategoryAttribute($value)
-    // {
-    //     $this->attributes['category_id'] = intval($value);
-    // }
-
-    // public function setBrandAttribute($value)
-    // {
-    //     $this->attributes['brand_id'] = intval($value);
-    // }
 
     public function setPriceAttribute($value)
      {
