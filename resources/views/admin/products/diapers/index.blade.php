@@ -14,11 +14,13 @@
                 <ul>
                     <li><a href="{{ route('admin.home') }}">Dashboard</a></li>
                     <li class="separator icon-angle-right icon-notext"></li>
-                    <li><a href="{{ route('admin.products.index') }}" class="text-orange">Produtos</a></li>
+                    <li><a href="{{ route('admin.diapers.index') }}" class="text-orange">Produtos</a></li>
                 </ul>
             </nav>
 
-            <a href="{{ route('admin.stocks.create') }}" class="btn btn-orange icon-user ml-1">Nova Entrada</a>
+            <a href="{{ route('admin.diapers.create') }}" class="btn btn-orange icon-user ml-1">Criar Produto</a>
+            
+            <a href="{{ route('admin.stocks.create') }}" class="btn btn-blue icon-user ml-1">Entrada de Produto</a>
             <button class="btn btn-green icon-search icon-notext ml-1 search_open"></button>
         </div>
     </header>
@@ -32,24 +34,31 @@
                     <tr>
                         <th>#</th>
                         <th>Produto</th>
+                        <th>Tamanho</th>
                         <th>Quantidade</th>
-                        <th>Preço de Custo</th>
-                        <th>Data</th>
+                        <th>Media de Custo</th>
+                        <th>Preço</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($stocks as $stock)
+                    @foreach ($diapers as $diaper)
                     <tr>
-                        <td>{{ $stock->id }}</td>
+                        <td>{{ $diaper->id }}</td>
+                        <td><a href="{{ route('admin.diapers.edit', ['diaper' => $diaper->id]) }}"
+                                class="text-orange">
+                                {{ $diaper->category->name }}-{{ $diaper->brand->name }}-{{ $diaper->description  }}</a>
+                        </td>
+                        <td>{{ $diaper->size }}</td>
+
                         @php
-                            $product = $stock->product->category->name. " / " .$stock->product->brand->name . " / " .$stock->product->description . " / " . $stock->product->size;
+                        $quantity = $diaper->stocks->sum('quantity');
                         @endphp
-                        <td><a href="{{ route('admin.stocks.edit', ['stock' => $stock->id]) }}" class="text-orange">
-                            {{ $product }}</a></td>
-                       
-                        <td class="badge badge-pill badge-primary">{{ $stock->quantity }}</td>
-                        <td>R$ {{ $stock->price }}</td>
-                        <td>{{ date_br($stock->created_at) }}</td>
+
+                        <td class="badge badge-pill 
+                        {{ ($quantity > 4 ? 'badge-success' : ($quantity == 0 ? 'badge-danger' : 'badge-warning')) }}">
+                            {{ $quantity }}</td>
+                        <td>R$ {{ money_br($diaper->stocks->avg('price')) }}</td>
+                        <td>R$ {{ $diaper->price }}</td>
                     </tr>
                     @endforeach
                 </tbody>

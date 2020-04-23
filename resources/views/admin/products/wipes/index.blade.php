@@ -14,11 +14,13 @@
                 <ul>
                     <li><a href="{{ route('admin.home') }}">Dashboard</a></li>
                     <li class="separator icon-angle-right icon-notext"></li>
-                    <li><a href="{{ route('admin.products.index') }}" class="text-orange">Produtos</a></li>
+                    <li><a href="{{ route('admin.wipes.index') }}" class="text-orange">Produtos</a></li>
                 </ul>
             </nav>
 
-            <a href="{{ route('admin.products.create') }}" class="btn btn-orange icon-user ml-1">Criar Produto</a>
+            <a href="{{ route('admin.wipes.create') }}" class="btn btn-orange icon-user ml-1">Criar Produto</a>
+            
+            <a href="{{ route('admin.stocks.create') }}" class="btn btn-blue icon-user ml-1">Entrada de Produto</a>
             <button class="btn btn-green icon-search icon-notext ml-1 search_open"></button>
         </div>
     </header>
@@ -32,31 +34,29 @@
                     <tr>
                         <th>#</th>
                         <th>Produto</th>
-                        <th>Tamanho</th>
                         <th>Quantidade</th>
                         <th>Media de Custo</th>
                         <th>Preço</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($products as $product)
+                    @foreach ($wipes as $wipe)
                     <tr>
-                        <td>{{ $product->id }}</td>
-                        <td><a href="{{ route('admin.products.edit', ['product' => $product->id]) }}"
+                        <td>{{ $wipe->id }}</td>
+                        <td><a href="{{ route('admin.wipes.edit', ['wipe' => $wipe->id]) }}"
                                 class="text-orange">
-                                {{ $product->category->name }}-{{ $product->brand->name }}-{{ $product->description  }}</a>
+                                {{ $wipe->category->name }} / {{ $wipe->brand->name }} / {{ $wipe->description  }}</a>
                         </td>
-                        <td>{{ $product->size }}</td>
 
                         @php
-                        $quantity = $product->stocks->sum('quantity');
+                            $quantity = $wipe->stocks->sum('quantity');
                         @endphp
 
                         <td class="badge badge-pill 
                         {{ ($quantity > 4 ? 'badge-success' : ($quantity == 0 ? 'badge-danger' : 'badge-warning')) }}">
                             {{ $quantity }}</td>
-                        <td>R$ {{ money_br($product->stocks->avg('price')) }}</td>
-                        <td>R$ {{ $product->price }}</td>
+                        <td>R$ {{ money_br($wipe->stocks->avg('price')) }}</td>
+                        <td>R$ {{ $wipe->price }}</td>
                     </tr>
                     @endforeach
                 </tbody>

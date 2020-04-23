@@ -53,11 +53,7 @@
                            <option value="">Selecione um produto</option>
                            @foreach ($products as $product)
                               <option value="{{ $product->id }}" {{ set_selected($product->id, old('product_id', $stock->product_id ?? null )) }}>
-                                 {{ $product->id }} 
-                                 {{ $product->category->name }} ---
-                                 {{ $product->brand->name }} ---
-                                 {{ $product->description }} ---
-                                 Tamanho ({{ $product->size }})
+                                 {{ $product->category->name }} / {{ $product->brand->name }} / {{ $product->description }} / {{ $product->size }}
                               </option>
                            @endforeach
                         </select>

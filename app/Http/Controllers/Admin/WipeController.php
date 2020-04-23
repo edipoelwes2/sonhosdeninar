@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\{Product, Category, Brand, Size};
+use App\{Brand, Category, Product};
 use App\Http\Requests\Admin\Product as ProductRequest;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class WipeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,13 +16,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        // $products = Product::all();
-        $products = Product::where('category_id', 1)->get();
 
-        // dd($products);
-        
-        return view('admin.products.index', [
-            'products' => $products,
+        return view('admin.products.wipes.index', [
+            'wipes' => Product::where('category_id', 2)->get(),
         ]);
     }
 
@@ -33,10 +29,12 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.products.form', [
-            'categories' => Category::all(['id', 'name']),
+
+        return view('admin.products.wipes.form', [
+
+            'category' => Category::where('id', 2)->first(),
             'brands' => Brand::all(['id', 'name']),
-            'sizes' => Size::all(['id', 'name']),
+
         ]);
     }
 
@@ -48,11 +46,11 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        $ProductCreate = Product::create($request->all());
-        
-        return redirect()->route('admin.products.edit', [
-            'product' => $ProductCreate->id,
-        ])->with(['color' => 'green', 'message' => 'Produto cadastrado com sucesso!']);
+        $productCreate = Product::create($request->all());
+
+        return redirect()->route('admin.wipes.edit', [
+            'wipe' => $productCreate->id,
+        ])->with(['color' => 'green', 'message' => 'Produco cadastrado com sucesso"']);
     }
 
     /**
@@ -63,7 +61,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+       //
     }
 
     /**
@@ -74,13 +72,12 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product = Product::where('id', $id)->first();
-        
-        return view('admin.products.form', [
-            'product' => $product,
-            'categories' => Category::all(['id', 'name']),
+
+        return view('admin.products.wipes.form', [
+            'wipe' => Product::where('id', $id)->first(),
+            'category' => Category::where('id', 2)->first(),
             'brands' => Brand::all(['id', 'name']),
-            'sizes' => Size::all(['id', 'name']),
+
         ]);
     }
 
@@ -93,12 +90,11 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, $id)
     {
-        $product = Product::where('id', $id)->first();
-        // $product->fill($request->all());
-        $product->update($request->all());
+        $wipe = Product::where('id', $id)->first();
+        $wipe->update($request->all());
 
-        return redirect()->route('admin.products.edit', [
-            'product' => $product->id,
+        return redirect()->route('admin.wipes.edit', [
+            'wipe' => $wipe->id,
         ])->with(['color' => 'green', 'message' => 'Produto atualizado com sucesso!']);
     }
 

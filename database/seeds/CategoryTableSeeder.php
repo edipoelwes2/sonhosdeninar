@@ -12,8 +12,11 @@ class CategoryTableSeeder extends Seeder
     public function run()
     {
         DB::table('categories')->insert([
-            ['name' => 'Fraldas', 'description' => 'Fraldas Descartaveis', 'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'Lenços', 'description' => 'Lenços Umidecidos', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Fralda', 'description' => 'Fraldas Descartaveis', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Lenço', 'description' => 'Lenços Umidecidos', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Roupa', 'description' => '', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'calçado', 'description' => '', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'higiene/Limpeza', 'description' => '', 'created_at' => now(), 'updated_at' => now()],
         ]);
     }
 }

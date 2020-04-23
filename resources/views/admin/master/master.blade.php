@@ -58,7 +58,7 @@
                </ul>
             </li>
 
-            <li class="dash_sidebar_nav_item {{ isActive('admin.categories') }}"><a class="icon-key"
+            {{-- <li class="dash_sidebar_nav_item {{ isActive('admin.categories') }}"><a class="icon-key"
                   href="{{ route('admin.categories.index') }}">Categorias</a>
                <ul class="dash_sidebar_nav_submenu">
                   <li class="{{ isActive('admin.categories.index') }}"><a
@@ -66,27 +66,26 @@
                   <li class="{{ isActive('admin.categories.create') }}"><a
                         href="{{ route('admin.categories.create') }}">Criar Novo</a></li>
                </ul>
-            </li>
+            </li> --}}
 
-            <li class="dash_sidebar_nav_item {{ isActive('admin.products') }}"><a class="icon-home"
-                  href="{{ route('admin.products.index') }}">Produtos</a>
+            <li class="dash_sidebar_nav_item {{ isActive('admin.diapers') }} {{ isActive('admin.wipes') }}"><a class="icon-home"
+                  href="{{ route('admin.diapers.index') }}">Produtos</a>
                <ul class="dash_sidebar_nav_submenu">
-                  <li class="{{ isActive('admin.products.index') }}"><a href="{{ route('admin.products.index') }}">Ver
-                        Todos</a></li>
-                  <li class="{{ isActive('admin.products.create') }}"><a
-                        href="{{ route('admin.products.create') }}">Criar Novo</a></li>
+                  <li class="{{ isActive('admin.diapers.index') }}"><a href="{{ route('admin.diapers.index') }}">Fraldas</a></li>
+                  <li class="{{ isActive('admin.wipes.index') }}"><a href="{{ route('admin.wipes.index') }}">Lenços</a></li>
+                  {{-- <li class="{{ isActive('admin.products.create') }}"><a href="{{ route('admin.products.create') }}">Criar Novo</a></li> --}}
                </ul>
             </li>
 
             <li class="dash_sidebar_nav_item {{ isActive('admin.stocks') }}"><a class="icon-home"
                href="{{ route('admin.stocks.index') }}">Entrada</a>
-            <ul class="dash_sidebar_nav_submenu">
-               <li class="{{ isActive('admin.stocks.index') }}"><a href="{{ route('admin.stocks.index') }}">Ver
-                     Todos</a></li>
-               <li class="{{ isActive('admin.stocks.create') }}"><a
-                     href="{{ route('admin.stocks.create') }}">Criar Novo</a></li>
-            </ul>
-         </li>
+               <ul class="dash_sidebar_nav_submenu">
+                  <li class="{{ isActive('admin.stocks.index') }}"><a href="{{ route('admin.stocks.index') }}">Ver
+                        Todos</a></li>
+                  <li class="{{ isActive('admin.stocks.create') }}"><a
+                        href="{{ route('admin.stocks.create') }}">Criar Novo</a></li>
+               </ul>
+            </li>
 
             <li class="dash_sidebar_nav_item"><a class="icon-file-text"
                   href="dashboard.php?app=contracts/index">Contratos</a>

@@ -5,7 +5,7 @@
 
    <header class="dash_content_app_header">
       <h2 class="icon-search">
-         {{ isset($product->id) ? 'Editar Produto' : 'Cadastrar Novo Produto' }}
+         {{ isset($diaper->id) ? 'Editar Produto' : 'Cadastrar Novo Produto' }}
       </h2>
 
       <div class="dash_content_app_header_actions">
@@ -13,7 +13,7 @@
             <ul>
                <li><a href="{{ route('admin.home') }}">Dashboard</a></li>
                <li class="separator icon-angle-right icon-notext"></li>
-               <li><a href="{{ route('admin.products.index') }}">Produtos</a></li>
+               <li><a href="{{ route('admin.diapers.index') }}">Produtos</a></li>
             </ul>
          </nav>
       </div>
@@ -40,10 +40,10 @@
             </li>
          </ul>
 
-         @if(! isset($product))
-            <form action="{{ route('admin.products.store') }}" method="post" class="app_form" enctype="multipart/form-data">
+         @if(! isset($diaper))
+            <form action="{{ route('admin.diapers.store') }}" method="post" class="app_form" enctype="multipart/form-data">
          @else
-            <form action="{{ route('admin.products.update', ['product' => $product->id]) }}" method="post" class="app_form" enctype="multipart/form-data">
+            <form action="{{ route('admin.diapers.update', ['diaper' => $diaper->id]) }}" method="post" class="app_form" enctype="multipart/form-data">
                @method('PUT')
          @endif
             @csrf
@@ -53,10 +53,7 @@
                      <label class="label">
                         <span class="legend">Categoria:</span>
                         <select name="category_id" class="select2">
-                           <option value="">Selecione uma categoria</option>
-                           @foreach ($categories as $category)
-                           <option value="{{ $category->id }}"{{ set_selected($category->id, old('category_id', $product->category_id ?? null)) }}>{{ $category->name }}</option>
-                           @endforeach
+                           <option value="{{ $category->id }}"{{ set_selected($category->id, old('category_id', $diaper->category_id ?? null)) }}>{{ $category->name }}</option>
                         </select>
                      </label>
                      <label class="label">
@@ -64,7 +61,7 @@
                         <select name="brand_id" class="select2">
                            <option value="">Selecione uma marca</option>
                            @foreach ($brands as $brand)
-                           <option value="{{ $brand->id }}"{{ set_selected($brand->id, old('brand_id', $product->brand_id ?? null)) }}>{{ $brand->name }}</option>
+                              <option value="{{ $brand->id }}"{{ set_selected($brand->id, old('brand_id', $diaper->brand_id ?? null)) }}>{{ $brand->name }}</option>
                            @endforeach
                         </select>
                      </label>
@@ -73,7 +70,7 @@
                   <label class="label">
                      <span class="legend">Descrição:</span>
                      <input type="text" name="description" placeholder="modelo do produto" autocomplete="off"
-                        value="{{ old('description', $product->description ?? null) }}" />
+                        value="{{ old('description', $diaper->description ?? null) }}" />
 
                      @error('description')
                      <span class="message-color" role="alert">
@@ -88,14 +85,14 @@
                         <select name="size" class="select2">
                            <option value="">Selecione o tamanho</option>
                            @foreach ($sizes as $size)
-                           <option value="{{ $size }}" {{ set_selected($size, old('size', $product->size ?? null)) }}>{{ $size }}</option>
+                           <option value="{{ $size }}" {{ set_selected($size, old('size', $diaper->size ?? null)) }}>{{ $size }}</option>
                            @endforeach
                         </select>
                      </label>
 
                      <label class="label">
                         <span class="legend">Preço:</span>
-                        <input type="text" name="price" class="mask-money" value="{{ old('price', $product->price ?? null) }}" />
+                        <input type="text" name="price" class="mask-money" value="{{ old('price', $diaper->price ?? null) }}" />
 
                         @error('price')
                         <span class="message-color" role="alert">
