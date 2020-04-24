@@ -37,6 +37,8 @@ Route::namespace('Admin')->prefix('admin')->as('admin.')->group(function (){
             'wipes' => 'WipeController',
             /** Estoque */
             'stocks' => 'StockController',
+             /** Vendas */
+             'sales' => 'SaleController',
         ]);
     });
 

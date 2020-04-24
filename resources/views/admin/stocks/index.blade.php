@@ -14,7 +14,7 @@
                 <ul>
                     <li><a href="{{ route('admin.home') }}">Dashboard</a></li>
                     <li class="separator icon-angle-right icon-notext"></li>
-                    <li><a href="{{ route('admin.products.index') }}" class="text-orange">Produtos</a></li>
+                    <li><a href="{{ route('admin.diapers.index') }}" class="text-orange">Produtos</a></li>
                 </ul>
             </nav>
 

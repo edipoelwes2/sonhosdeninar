@@ -34,9 +34,9 @@
                     <tr>
                         <th>#</th>
                         <th>Produto</th>
-                        <th>Tamanho</th>
+                        {{-- <th>Tamanho</th> --}}
                         <th>Quantidade</th>
-                        <th>Media de Custo</th>
+                        {{-- <th>Media de Custo</th> --}}
                         <th>Preço</th>
                     </tr>
                 </thead>
@@ -46,9 +46,8 @@
                         <td>{{ $diaper->id }}</td>
                         <td><a href="{{ route('admin.diapers.edit', ['diaper' => $diaper->id]) }}"
                                 class="text-orange">
-                                {{ $diaper->category->name }}-{{ $diaper->brand->name }}-{{ $diaper->description  }}</a>
+                                {{ $diaper->category->name }} / {{ $diaper->brand->name }} / {{ $diaper->description  }} / {{ $diaper->size }}</a>
                         </td>
-                        <td>{{ $diaper->size }}</td>
 
                         @php
                         $quantity = $diaper->stocks->sum('quantity');
@@ -57,7 +56,7 @@
                         <td class="badge badge-pill 
                         {{ ($quantity > 4 ? 'badge-success' : ($quantity == 0 ? 'badge-danger' : 'badge-warning')) }}">
                             {{ $quantity }}</td>
-                        <td>R$ {{ money_br($diaper->stocks->avg('price')) }}</td>
+                        {{-- <td>R$ {{ money_br($diaper->stocks->avg('price')) }}</td> --}}
                         <td>R$ {{ $diaper->price }}</td>
                     </tr>
                     @endforeach

@@ -35,7 +35,7 @@
                         <th>#</th>
                         <th>Produto</th>
                         <th>Quantidade</th>
-                        <th>Media de Custo</th>
+                        {{-- <th>Media de Custo</th> --}}
                         <th>Preço</th>
                     </tr>
                 </thead>
@@ -55,7 +55,7 @@
                         <td class="badge badge-pill 
                         {{ ($quantity > 4 ? 'badge-success' : ($quantity == 0 ? 'badge-danger' : 'badge-warning')) }}">
                             {{ $quantity }}</td>
-                        <td>R$ {{ money_br($wipe->stocks->avg('price')) }}</td>
+                        {{-- <td>R$ {{ money_br($wipe->stocks->avg('price')) }}</td> --}}
                         <td>R$ {{ $wipe->price }}</td>
                     </tr>
                     @endforeach
