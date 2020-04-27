@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Product;
+use App\{Product, ProductSale, Sale};
 use Illuminate\Http\Request;
 
 class SaleController extends Controller
@@ -15,7 +15,11 @@ class SaleController extends Controller
      */
     public function index()
     {
-        //
+        $sales = Sale::all();
+
+        return view('admin.sales.index', [
+            'sales' => $sales,
+        ]);
     }
 
     /**
@@ -49,7 +53,13 @@ class SaleController extends Controller
      */
     public function show($id)
     {
-        //
+        $sale = Sale::findOrFail($id);
+
+        // dd(ProductSale::where('sale_id', $sale->user_id)->get());
+        return view('admin.sales.show', [
+            'sale' => $sale,
+            'itens' => ProductSale::where('sale_id', $sale->user_id)->get(),
+        ]);
     }
 
     /**

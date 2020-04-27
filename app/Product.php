@@ -28,6 +28,11 @@ class Product extends Model
         return $this->belongsTo(Brand::class);
     }
 
+    public function sales()
+    {
+        return $this->belongsTo(Sale::class);
+    }
+
     public function setPriceAttribute($value)
      {
          if(empty($value)){
